@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <div th:fragment="exerciseTable">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Sets</th>
+                        <th>Reps</th>
+                        <th>Extra Info</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="ex : ${exercises}">
+                        <td th:text="${ex.getName()}"></td>
+                        <td th:text="${ex.getSets()}"></td>
+                        <td th:text="${ex.getReps()}"></td>
+                        <td th:text="${ex.getExtraInfo()}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

@@ -23,7 +23,7 @@ public class Exercise {
     private Integer sets;
     @Column(nullable=false)
     private Integer reps;
-    @Column(nullable=false)
+    @Column(nullable=false, columnDefinition = "TEXT")
     private String extraInfo;
     @Enumerated(EnumType.ORDINAL)
     @Column(nullable=false)

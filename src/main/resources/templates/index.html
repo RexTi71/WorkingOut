@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
+</head>
+<body>
+    <table id="exercises-table">
+    </table>
+    <button hx-get="/exercises" hx-swap="outerHTML" hx-target="#exercises-table">
+        Get Exercises
+    </button>
+</body>
+</html>
