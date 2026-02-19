@@ -22,4 +22,7 @@ public class ExerciseTableService {
     public List<Exercise> getExercisesFromDay(DayOfWeek day){
         return exerciseRepository.findByDay(day);
     }
+    public void addExercise(Exercise newExercise){
+        exerciseRepository.save(newExercise);
+    }
 }

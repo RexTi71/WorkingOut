@@ -6,24 +6,34 @@
     </head>
     <body>
         <div th:fragment="exerciseTable">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Sets</th>
-                        <th>Reps</th>
-                        <th>Extra Info</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="ex : ${exercises}">
-                        <td th:text="${ex.getName()}"></td>
-                        <td th:text="${ex.getSets()}"></td>
-                        <td th:text="${ex.getReps()}"></td>
-                        <td th:text="${ex.getExtraInfo()}"></td>
-                    </tr>
-                </tbody>
-            </table>
+            <form hx-post="/exercises/add" th:object="${newExercise}">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Sets</th>
+                            <th>Reps</th>
+                            <th>Extra Info</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="ex : ${exercises}">
+                            <td th:text="${ex.getName()}"></td>
+                            <td th:text="${ex.getSets()}"></td>
+                            <td th:text="${ex.getReps()}"></td>
+                            <td th:text="${ex.getExtraInfo()}"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" th:field="*{name}"></td>
+                            <td><input type="text" th:field="*{sets}"></td>
+                            <td><input type="text" th:field="*{reps}"></td>
+                            <td><input type="text" th:field="*{extraInfo}"></td>
+                            <input type="hidden" th:field="*{day}">
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="submit">Add exercise</button>
+            </form>
         </div>
     </body>
 </html>
