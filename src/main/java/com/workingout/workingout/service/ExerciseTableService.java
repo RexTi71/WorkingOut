@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.workingout.workingout.model.DayOfWeek;
 import com.workingout.workingout.model.Exercise;
 import com.workingout.workingout.repository.ExercisesRepository;
 
@@ -17,5 +18,8 @@ public class ExerciseTableService {
     
     public List<Exercise> getAllExercises(){
         return exerciseRepository.findAll();
+    }
+    public List<Exercise> getExercisesFromDay(DayOfWeek day){
+        return exerciseRepository.findByDay(day);
     }
 }

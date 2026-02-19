@@ -2,12 +2,24 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
+    <link rel="stylesheet" href="/index.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <table id="exercises-table">
-    </table>
-    <button hx-get="/exercises" hx-swap="outerHTML" hx-target="#exercises-table">
-        Get Exercises
-    </button>
+    <div class="table-wrapper">
+        <ul>
+            <button class="day-btn montserrat-default" name="dayName" th:value="1" hx-get="/exercises" hx-target="#exercises-table">Monday</button>
+            <button class="day-btn montserrat-default" name="dayName" th:value="2" hx-get="/exercises" hx-target="#exercises-table">Tuesday</button>
+            <button class="day-btn montserrat-default" name="dayName" th:value="3" hx-get="/exercises" hx-target="#exercises-table">Wednesday</button>
+            <button class="day-btn montserrat-default" name="dayName" th:value="4" hx-get="/exercises" hx-target="#exercises-table">Thursday</button>
+            <button class="day-btn montserrat-default" name="dayName" th:value="5" hx-get="/exercises" hx-target="#exercises-table">Friday</button>
+            <button class="day-btn montserrat-default" name="dayName" th:value="6" hx-get="/exercises" hx-target="#exercises-table">Saturday</button>
+            <button class="day-btn montserrat-default" name="dayName" th:value="7" hx-get="/exercises" hx-target="#exercises-table">Sunday</button>
+        </ul>
+            <br>
+            <div id="exercises-table"></div>
+    </div>
 </body>
 </html>

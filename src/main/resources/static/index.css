@@ -1,0 +1,44 @@
+/* .montserrat-default { */
+*{
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+ul {
+    display: flex;
+    gap: 10px;
+    list-style-type: none;
+    padding: 0;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 2px solid #14c947;
+    border-radius: 15px; 
+    overflow:hidden; 
+}
+
+th, td {
+    border: 1px solid #14c947;
+    padding: 0.5rem;
+    text-align: left;
+
+}
+.table-wrapper{
+    padding-left: 1rem;
+}
+.day-btn{
+    background-color: #14c947;
+    color: white;
+    border: 0;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color .35s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.day-btn:hover{
+    background-color: #0f4f21;
+
+}
