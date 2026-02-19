@@ -10,13 +10,13 @@
 <body>
     <div class="table-wrapper">
         <ul>
-            <button class="day-btn montserrat-default" name="dayName" th:value="1" hx-get="/exercises" hx-target="#exercises-table">Monday</button>
-            <button class="day-btn montserrat-default" name="dayName" th:value="2" hx-get="/exercises" hx-target="#exercises-table">Tuesday</button>
-            <button class="day-btn montserrat-default" name="dayName" th:value="3" hx-get="/exercises" hx-target="#exercises-table">Wednesday</button>
-            <button class="day-btn montserrat-default" name="dayName" th:value="4" hx-get="/exercises" hx-target="#exercises-table">Thursday</button>
-            <button class="day-btn montserrat-default" name="dayName" th:value="5" hx-get="/exercises" hx-target="#exercises-table">Friday</button>
-            <button class="day-btn montserrat-default" name="dayName" th:value="6" hx-get="/exercises" hx-target="#exercises-table">Saturday</button>
-            <button class="day-btn montserrat-default" name="dayName" th:value="7" hx-get="/exercises" hx-target="#exercises-table">Sunday</button>
+            <button class="day-btn montserrat-default" name="day" th:value="MONDAY" hx-get="/exercises" hx-target="#exercises-table">Monday</button>
+            <button class="day-btn montserrat-default" name="day" th:value="TUESDAY" hx-get="/exercises" hx-target="#exercises-table">Tuesday</button>
+            <button class="day-btn montserrat-default" name="day" th:value="WEDNESDAY" hx-get="/exercises" hx-target="#exercises-table">Wednesday</button>
+            <button class="day-btn montserrat-default" name="day" th:value="THURSDAY" hx-get="/exercises" hx-target="#exercises-table">Thursday</button>
+            <button class="day-btn montserrat-default" name="day" th:value="FRIDAY" hx-get="/exercises" hx-target="#exercises-table">Friday</button>
+            <button class="day-btn montserrat-default" name="day" th:value="SATURDAY" hx-get="/exercises" hx-target="#exercises-table">Saturday</button>
+            <button class="day-btn montserrat-default" name="day" th:value="SUNDAY" hx-get="/exercises" hx-target="#exercises-table">Sunday</button>
         </ul>
             <br>
             <div id="exercises-table"></div>

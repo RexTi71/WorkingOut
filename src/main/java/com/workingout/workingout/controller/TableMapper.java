@@ -20,14 +20,14 @@ public class TableMapper {
         return "index";
     }
     @GetMapping("/exercises")
-    public String getExercisesFromDay(@RequestParam(name = "dayNumber", required = false) DayOfWeek day, Model model){
+    public String getExercisesFromDay(@RequestParam DayOfWeek day, Model model){
         
         if(day != null){
             model.addAttribute("exercises", tableService.getExercisesFromDay(day));
         }else{
             model.addAttribute("exercises", tableService.getAllExercises());
         }
-        
+
         return "exercisetable :: exerciseTable";
     }
 }
