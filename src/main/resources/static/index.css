@@ -22,7 +22,7 @@ table {
 }
 
 th, td {
-    border: 1px solid #14c947;
+    border: 2px solid #14c947;
     padding: 0.5rem;
     text-align: left;
 
@@ -30,15 +30,22 @@ th, td {
 .table-wrapper{
     padding-left: 1rem;
 }
-.day-btn{
-    background-color: #14c947;
+.btn-base{
     color: white;
     border: 0;
     font-size: 1.2rem;
     cursor: pointer;
     transition: background-color .35s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
+.day-btn{
+    background-color: #14c947;
+}
 .day-btn:hover{
     background-color: #0f4f21;
-
+}
+.delete-all-btn{
+    background-color: #e42121;
+}
+.delete-all-btn:hover{
+    background-color: #a11d1d;
 }
