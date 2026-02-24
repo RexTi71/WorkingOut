@@ -1,5 +1,8 @@
 package com.workingout.workingout.controller;
 
+import com.workingout.workingout.dto.ExerciseDTO;
+import com.workingout.workingout.dto.ExerciseDTOMapper;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +18,11 @@ import com.workingout.workingout.service.ExerciseTableService;
 @Controller
 public class TableMapper {
     private final ExerciseTableService tableService;
-
     //TODO:Na chwile zeby dodac na sztywno userId, pozniej zmienic
     private final UsersRepository usersRepository;
-    public TableMapper(ExerciseTableService tableService, UsersRepository usersRepository){
+
+    public TableMapper(ExerciseTableService tableService,
+                       UsersRepository usersRepository){
         this.tableService = tableService;
         this.usersRepository = usersRepository;
     }
@@ -27,7 +31,7 @@ public class TableMapper {
         return "index";
     }
     private void prepareExercise(DayOfWeek day, Model model){
-        Exercise newExercise = new Exercise();
+        ExerciseDTO newExercise = new ExerciseDTO();
         newExercise.setDay(day);
         if(day != null){
             model.addAttribute("exercises", tableService.getExercisesFromDay(day));
@@ -44,9 +48,8 @@ public class TableMapper {
         return "exercisetable :: exerciseTable";
     }
     @PostMapping("/exercises/add")
-    public String addExercise(@ModelAttribute("newExercise") Exercise newExercise, Model model){
-        //TODO:Do zmiany pozniej
-        newExercise.setUser(usersRepository.getReferenceById(1L));
+    public String addExercise(@Valid ExerciseDTO newExercise, Model model){
+        newExercise.setUserId(1L);
         tableService.addExercise(newExercise);
         prepareExercise(newExercise.getDay(), model);
         return "exercisetable :: exerciseTable";

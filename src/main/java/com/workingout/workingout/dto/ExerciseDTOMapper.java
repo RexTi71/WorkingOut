@@ -1,5 +1,6 @@
 package com.workingout.workingout.dto;
 
+import com.workingout.workingout.model.User;
 import org.springframework.stereotype.Component;
 
 import com.workingout.workingout.model.Exercise;
@@ -15,8 +16,12 @@ public class ExerciseDTOMapper {
     //     ex.setUserId(ex);
     //     return ex;
     // }
-    public Exercise toEntity(ExerciseDTO exerciseDTO){
-        Exercise ex = new Exercise();
-        return ex;
+    public Exercise toEntity(ExerciseDTO exerciseDTO, User user){
+         return new Exercise(exerciseDTO.getName(),
+                                    exerciseDTO.getSets(),
+                                    exerciseDTO.getReps(),
+                                    exerciseDTO.getExtraInfo(),
+                                    exerciseDTO.getDay(),
+                                    user);
     }
 }

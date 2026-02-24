@@ -1,10 +1,17 @@
 package com.workingout.workingout.dto;
 
 import com.workingout.workingout.model.DayOfWeek;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class ExerciseDTO {
+    @NotBlank(message = "Name is required")
+    @Size(min = 3, max = 100, message = "Write a name between 3 and 100 characters")
     private String name;
+    @Min(value = 0, message = "Sets cannot be negative")
     private Integer sets;
+    @Min(value = 0, message = "Reps cannot be negative")
     private Integer reps;
     private String extraInfo;
     private DayOfWeek day;
