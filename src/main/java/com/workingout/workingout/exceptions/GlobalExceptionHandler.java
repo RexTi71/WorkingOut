@@ -1,6 +1,8 @@
 package com.workingout.workingout.exceptions;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,6 +14,8 @@ import java.util.Date;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
     @ExceptionHandler(InputNotValidException.class)
     public ResponseEntity<ErrorObject> handleInputNotValidException(InputNotValidException ex, WebRequest request){
         ErrorObject errorObject = new ErrorObject();
@@ -19,6 +23,7 @@ public class GlobalExceptionHandler {
         errorObject.setStatusCode(HttpStatus.NOT_ACCEPTABLE.value());
         errorObject.setMessage(ex.getMessage());
         errorObject.setTimestamp(new Date());
+        logger.warn(ex.toString());
         return new ResponseEntity<ErrorObject>(errorObject, HttpStatus.NOT_ACCEPTABLE);
     }
 }
