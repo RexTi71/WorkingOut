@@ -1,4 +1,4 @@
-package com.workingout.workingout.model;
+package com.workingout.workingout.models;
 
 
 import jakarta.persistence.Column;

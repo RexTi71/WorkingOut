@@ -1,6 +1,6 @@
 package com.workingout.workingout.dto;
 
-import com.workingout.workingout.model.DayOfWeek;
+import com.workingout.workingout.models.DayOfWeek;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

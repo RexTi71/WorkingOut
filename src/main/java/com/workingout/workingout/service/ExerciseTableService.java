@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.workingout.workingout.dto.ExerciseDTO;
 import com.workingout.workingout.dto.ExerciseDTOMapper;
-import com.workingout.workingout.model.User;
+import com.workingout.workingout.models.User;
 import com.workingout.workingout.repository.UsersRepository;
 import org.springframework.stereotype.Service;
 
-import com.workingout.workingout.model.DayOfWeek;
-import com.workingout.workingout.model.Exercise;
+import com.workingout.workingout.models.DayOfWeek;
+import com.workingout.workingout.models.Exercise;
 import com.workingout.workingout.repository.ExercisesRepository;
 
 @Service

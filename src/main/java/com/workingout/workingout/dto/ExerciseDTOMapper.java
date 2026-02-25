@@ -1,9 +1,9 @@
 package com.workingout.workingout.dto;
 
-import com.workingout.workingout.model.User;
+import com.workingout.workingout.models.User;
 import org.springframework.stereotype.Component;
 
-import com.workingout.workingout.model.Exercise;
+import com.workingout.workingout.models.Exercise;
 
 @Component
 public class ExerciseDTOMapper {
