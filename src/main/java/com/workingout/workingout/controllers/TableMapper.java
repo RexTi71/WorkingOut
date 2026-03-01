@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,6 +55,13 @@ public class TableMapper {
         newExercise.setUserId(1L);
         tableService.addExercise(newExercise);
         prepareExercise(newExercise.getDay(), model);
+        return "exercisetable :: exerciseTable";
+    }
+    @DeleteMapping("/exercises/removeall")
+    public String deleteAllExercisesFromDay(@RequestParam DayOfWeek day, Model model){
+        prepareExercise(day, model);
+        tableService.deleteAllExercisesFromDay(day);
+        //Pozniej na popup boxa zmienic
         return "exercisetable :: exerciseTable";
     }
 }

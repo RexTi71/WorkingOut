@@ -36,4 +36,7 @@ public class ExerciseTableService {
         User userRef = usersRepository.getReferenceById(newExercise.getUserId());
         exerciseRepository.save(exerciseDTOMapper.toEntity(newExercise, userRef));
     }
+    public void deleteAllExercisesFromDay(DayOfWeek day){
+        exerciseRepository.deleteAllByDay(day);
+    }
 }
