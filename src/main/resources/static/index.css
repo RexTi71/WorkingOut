@@ -52,3 +52,12 @@ th, td {
 .alert-box{
     background-color: #a11d1d;
 }
+.delete-btn{
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #a11d1d;
+    transition: background-color .35s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.delete-btn:hover{
+    background-color: #990f0f;
+}

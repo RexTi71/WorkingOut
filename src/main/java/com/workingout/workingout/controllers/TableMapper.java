@@ -3,13 +3,11 @@ package com.workingout.workingout.controllers;
 import com.workingout.workingout.dto.ExerciseDTO;
 import com.workingout.workingout.exceptions.InputNotValidException;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import com.workingout.workingout.models.DayOfWeek;
 import com.workingout.workingout.repository.UsersRepository;
@@ -62,6 +60,13 @@ public class TableMapper {
         prepareExercise(day, model);
         tableService.deleteAllExercisesFromDay(day);
         //Pozniej na popup boxa zmienic
+        //Dodaje nie potrzebnie cala tabele
         return "exercisetable :: exerciseTable";
+    }
+    @DeleteMapping("/exercises/remove/{id}")
+    @ResponseBody
+    public String deleteExerciseById(@PathVariable Long id){
+        tableService.deleteExerciseById(id);
+        return "";
     }
 }

@@ -39,4 +39,7 @@ public class ExerciseTableService {
     public void deleteAllExercisesFromDay(DayOfWeek day){
         exerciseRepository.deleteAllByDay(day);
     }
+    public void deleteExerciseById(Long id){
+        exerciseRepository.deleteById(id);
+    }
 }
