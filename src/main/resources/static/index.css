@@ -22,9 +22,9 @@ table {
 }
 
 th, td {
-    border: 2px solid #14c947;
+    border: solid #14c947;
     padding: 0.5rem;
-    text-align: left;
+    border-width: 0 1px 1px 0;
 
 }
 .table-wrapper{
@@ -55,9 +55,12 @@ th, td {
 .delete-btn{
     cursor: pointer;
     color: #ffffff;
-    background-color: #a11d1d;
+    background-color: #e42121;
+    border: 0;
     transition: background-color .35s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    border-radius: 10px;
+    padding: 12px;
 }
 .delete-btn:hover{
-    background-color: #990f0f;
+    background-color: #a11d1d;
 }

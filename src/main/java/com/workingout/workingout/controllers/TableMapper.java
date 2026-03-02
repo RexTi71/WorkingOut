@@ -64,9 +64,8 @@ public class TableMapper {
         return "exercisetable :: exerciseTable";
     }
     @DeleteMapping("/exercises/remove/{id}")
-    @ResponseBody
     public String deleteExerciseById(@PathVariable Long id){
         tableService.deleteExerciseById(id);
-        return "";
+        return "exercisetable :: exerciseTable";
     }
 }
