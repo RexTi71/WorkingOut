@@ -3,7 +3,6 @@ package com.workingout.workingout.controllers;
 import com.workingout.workingout.dto.ExerciseDTO;
 import com.workingout.workingout.exceptions.InputNotValidException;
 import jakarta.validation.Valid;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,15 +13,13 @@ import com.workingout.workingout.repository.UsersRepository;
 import com.workingout.workingout.service.ExerciseTableService;
 
 @Controller
-public class TableMapper {
+public class ExerciseTableController {
     private final ExerciseTableService tableService;
     //TODO:Na chwile zeby dodac na sztywno userId, pozniej zmienic
-    private final UsersRepository usersRepository;
 
-    public TableMapper(ExerciseTableService tableService,
-                       UsersRepository usersRepository){
+    public ExerciseTableController(ExerciseTableService tableService,
+                                   UsersRepository usersRepository){
         this.tableService = tableService;
-        this.usersRepository = usersRepository;
     }
     @GetMapping("/")
     public String getIndex(){
@@ -41,7 +38,6 @@ public class TableMapper {
     }
     @GetMapping("/exercises")
     public String getExercisesFromDay(@RequestParam DayOfWeek day, Model model){
-        
         prepareExercise(day, model);
         return "exercisetable :: exerciseTable";
     }
