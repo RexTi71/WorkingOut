@@ -27,8 +27,8 @@ public class ExerciseTableController {
     }
     private void prepareExercise(DayOfWeek day, Model model){
         ExerciseDTO newExercise = new ExerciseDTO();
-        newExercise.setDay(day);
         if(day != null){
+            newExercise.setDay(day);
             model.addAttribute("exercises", tableService.getExercisesFromDay(day));
             model.addAttribute("day", day);
         }else{
@@ -37,7 +37,7 @@ public class ExerciseTableController {
         model.addAttribute("newExercise", newExercise);
     }
     @GetMapping("/exercises")
-    public String getExercisesFromDay(@RequestParam DayOfWeek day, Model model){
+    public String getExercisesFromDay(@RequestParam(required = false) DayOfWeek day, Model model){
         prepareExercise(day, model);
         return "exercisetable :: exerciseTable";
     }
