@@ -22,7 +22,7 @@
                             <td th:text="${ex.getSets()}"></td>
                             <td th:text="${ex.getReps()}"></td>
                             <td th:text="${ex.getExtraInfo()}"></td>
-                            <td th:hx-delete="|/exercises/remove/${ex.getId()}|" class="delete-btn">x</td>
+                            <td th:hx-delete="|/exercises/remove/${ex.getId()}|" hx-swap="none" class="delete-btn">x</td>
                         </tr>
                         <tr>
                             <td><input type="text" th:field="*{name}"></td>

@@ -1,6 +1,5 @@
 package com.workingout.workingout.controllers;
 
-import com.workingout.workingout.dto.ExerciseDTO;
 import com.workingout.workingout.models.DayOfWeek;
 import com.workingout.workingout.models.Exercise;
 import com.workingout.workingout.repository.UsersRepository;
@@ -16,12 +15,11 @@ import java.util.List;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(ExerciseTableController.class)
-public class ExerciseTableControllerIntegrationTest {
+public class ExerciseTableControllerUnitTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -97,5 +95,25 @@ public class ExerciseTableControllerIntegrationTest {
                 .param("day","WEDNESDAY")
                 .param("extraInfo","Keep form"))
                 .andExpect(status().isNotAcceptable());
+    }
+    @Test
+    void shouldDeleteAllExercisesFromMonday() throws Exception{
+        DayOfWeek testDay = DayOfWeek.MONDAY;
+        mockMvc.perform(delete("/exercises/removeall")
+                .param("day","MONDAY")
+                ).andExpect(status().isOk())
+                .andExpect(view().name("exercisetable :: exerciseTable")
+                );
+
+        verify(tableService).deleteAllExercisesFromDay(argThat(dayOfWeek ->
+                dayOfWeek == testDay));
+    }
+    @Test
+    void shouldDeleteExerciseByIdTen() throws Exception{
+        Long idToDelete = 10L;
+        mockMvc.perform(delete("/exercises/remove/{id}", idToDelete)
+                ).andExpect(status().isOk())
+                .andExpect(view().name("exercisetable :: exerciseTable"));
+        verify(tableService).deleteExerciseById(idToDelete);
     }
 }

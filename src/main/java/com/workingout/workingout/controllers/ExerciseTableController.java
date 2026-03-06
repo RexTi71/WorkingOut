@@ -55,13 +55,12 @@ public class ExerciseTableController {
     public String deleteAllExercisesFromDay(@RequestParam DayOfWeek day, Model model){
         prepareExercise(day, model);
         tableService.deleteAllExercisesFromDay(day);
-        //Pozniej na popup boxa zmienic
-        //Dodaje nie potrzebnie cala tabele
         return "exercisetable :: exerciseTable";
     }
     @DeleteMapping("/exercises/remove/{id}")
-    public String deleteExerciseById(@PathVariable Long id){
+    public String deleteExerciseById(@PathVariable Long id, Model model){
         tableService.deleteExerciseById(id);
+        prepareExercise((DayOfWeek) model.getAttribute("day"), model);
         return "exercisetable :: exerciseTable";
     }
 }
