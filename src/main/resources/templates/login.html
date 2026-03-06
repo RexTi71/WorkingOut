@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>WorkingOut-Login</title>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
+</head>
+<body>
+    <div>
+        <form hx-post="/validation" th:object="${user}">
+            <label for="username">Username: </label>
+            <input type="text" id="username" th:field="*{username}">
+            <label for="password">Password: </label>
+            <input type="password" id="password" th:field="*{password}" >
+            <input type="submit" value="Login">
+            <input type="submit" value="Register">
+        </form>
+    </div>
+</body>
+</html>
