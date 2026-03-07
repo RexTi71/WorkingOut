@@ -3,7 +3,7 @@ package com.workingout.workingout.service;
 import java.util.List;
 
 import com.workingout.workingout.dto.ExerciseDTO;
-import com.workingout.workingout.dto.ExerciseDTOMapper;
+import com.workingout.workingout.dto.DTOMapper;
 import com.workingout.workingout.models.User;
 import com.workingout.workingout.repository.UsersRepository;
 import org.springframework.stereotype.Service;
@@ -15,11 +15,11 @@ import com.workingout.workingout.repository.ExercisesRepository;
 @Service
 public class ExerciseTableService {
     private final ExercisesRepository exerciseRepository;
-    private final ExerciseDTOMapper exerciseDTOMapper;
+    private final DTOMapper exerciseDTOMapper;
     private final UsersRepository usersRepository;
     public ExerciseTableService(ExercisesRepository exercisesRepository,
                                 UsersRepository usersRepository,
-                                ExerciseDTOMapper exerciseDTOMapper){
+                                DTOMapper exerciseDTOMapper){
         this.exerciseRepository = exercisesRepository;
         this.usersRepository = usersRepository;
         this.exerciseDTOMapper = exerciseDTOMapper;

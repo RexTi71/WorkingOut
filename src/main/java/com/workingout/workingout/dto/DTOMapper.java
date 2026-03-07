@@ -6,16 +6,7 @@ import org.springframework.stereotype.Component;
 import com.workingout.workingout.models.Exercise;
 
 @Component
-public class ExerciseDTOMapper {
-    // public ExerciseDTO toDto(Exercise exercise){
-    //     ExerciseDTO ex = new ExerciseDTO();
-    //     ex.setName(exercise.getName());
-    //     ex.setReps(exercise.getReps());
-    //     ex.setSets(exercise.getSets());
-    //     ex.setExtraInfo(exercise.getExtraInfo());
-    //     ex.setUserId(ex);
-    //     return ex;
-    // }
+public class DTOMapper {
     public Exercise toEntity(ExerciseDTO exerciseDTO, User user){
          return new Exercise(exerciseDTO.getName(),
                                     exerciseDTO.getSets(),
@@ -23,5 +14,11 @@ public class ExerciseDTOMapper {
                                     exerciseDTO.getExtraInfo(),
                                     exerciseDTO.getDay(),
                                     user);
+    }
+    public User toEntity(UserDTO userDTO){
+        return new User(
+                userDTO.getUsername(),
+                userDTO.getPassword()
+        );
     }
 }
