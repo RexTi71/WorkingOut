@@ -10,16 +10,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="login-box-wrapper" id="login-box-wrapper">
-        <div class="login-box">
-            <form hx-post="/login" hx-target="#login-box-wrapper" hx-swap="outerHTML" th:object="${user}">
-                <input type="text" id="username" placeholder="Username" th:field="*{username}">
-                <br>
-                <input type="password" id="password" placeholder="Password" th:field="*{password}" >
-                <br>
-                <input type="submit" value="Login">
-                <input type="submit" hx-post="/register" value="Register">
-            </form>
+    <div id="login-box-wrapper"class="login-box-wrapper">
+        <div>
+            <div th:if="${loginFail}" class="login-fail-alert">
+                <strong>Failed to login</strong>
+            </div>
+            <div class="login-box">
+                <form hx-post="/login" hx-target="#login-box-wrapper" hx-swap="outerHTML" th:object="${user}">
+                    <input type="text" id="username" placeholder="Username" th:field="*{username}">
+                    <br>
+                    <input type="password" id="password" placeholder="Password" th:field="*{password}" >
+                    <br>
+                    <input type="submit" value="Login">
+                    <input type="button" hx-post="/register" value="Register">
+                </form>
+            </div>
         </div>
     </div>
 </body>

@@ -5,6 +5,15 @@
     font-style: normal;
     font-size: 1.25rem;
 }
+.login-fail-alert{
+    background-color: #b03e3e;
+    color: white;
+    display: grid;
+    justify-content: center;
+    padding: 25px;
+    margin-bottom: 10px;
+    border-radius: 15pt;
+}
 .login-box-wrapper{
     height: 100vh;
     display: grid;
@@ -13,17 +22,16 @@
 .login-box{
     text-align: center;
     background-color: #14c947;
-    border-radius: 25pt;
-    border: #14c947 2px;
+    border-radius: 15pt;
     width: min-content;
     height: min-content;
     padding: 15px;
 }
-label{
-    color: white;
-}
 input{
     border: #14c947;
-    border-radius: 25pt;
+    border-radius: 7pt;
     margin-top: 15px;
+    padding: 5px 15px 5px 15px;
+    background: #464655;
+    color: white;
 }

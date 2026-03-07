@@ -2,6 +2,7 @@ package com.workingout.workingout.controllers;
 
 import com.workingout.workingout.dto.UserDTO;
 import com.workingout.workingout.service.UserLoginService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,11 +26,14 @@ public class UserLoginController {
     }
 
     @PostMapping("/login")
-    public String validateLogin(UserDTO user, Model model){
+    public Object validateLogin(UserDTO user, Model model){
         if(userLoginService.isThereAUserByThisUsernameAndPassword(user)){
-            return "index";
+            return ResponseEntity.ok()
+                    .header("HX-Redirect","/")
+                    .build();
         }
         prepareLoginPage(model);
-        return "login";
+        model.addAttribute("loginFail", true);
+        return "login :: #login-box-wrapper";
     }
 }
