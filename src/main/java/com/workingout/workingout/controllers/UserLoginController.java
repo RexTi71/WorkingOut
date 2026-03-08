@@ -46,6 +46,12 @@ public class UserLoginController {
             throwAlertBox(model, "User with given username already exists");
             return "login :: #login-box-wrapper";
         }
+        try{
+            userLoginService.addUserToDb(user);
+        }catch (IllegalArgumentException ex){
+            throwAlertBox(model,"Given username or password was empty");
+            return "login :: #login-box-wrapper";
+        }
         model.addAttribute("registerSuccess", true);
         return "login :: #login-box-wrapper";
     }

@@ -23,4 +23,12 @@ public class UserLoginService {
     public boolean isThereAUserByUsername(String username){
         return usersRepository.findByUsername(username) != null;
     }
+    public void addUserToDb(UserDTO userDTO) throws IllegalArgumentException{
+        User user = userDTOMapper.toEntity(userDTO);
+        if(user.getPassword().isBlank()){
+            throw new IllegalArgumentException();
+        }
+        usersRepository.save(user);
+
+    }
 }

@@ -16,7 +16,7 @@
                 <strong th:text="${errorMsg}"></strong>
             </div>
             <div th:if="${registerSuccess}" class="register-success-alert alert-box">
-                <strong>Successfully registered</strong>
+                <strong>Successfully registered, you can now log in</strong>
             </div>
             <div class="login-box">
                 <form hx-post="/login" hx-target="#login-box-wrapper" hx-swap="outerHTML" th:object="${user}">
