@@ -24,7 +24,10 @@ public class UserLoginController {
         prepareLoginPage(model);
         return "login";
     }
-
+    private void throwAlertBox(Model model, String message){
+        model.addAttribute("loginFail", true);
+        model.addAttribute("errorMsg", message);
+    }
     @PostMapping("/login")
     public Object validateLogin(UserDTO user, Model model){
         if(userLoginService.isThereAUserByThisUsernameAndPassword(user)){
@@ -33,7 +36,18 @@ public class UserLoginController {
                     .build();
         }
         prepareLoginPage(model);
-        model.addAttribute("loginFail", true);
+        throwAlertBox(model, "Failed to login");
         return "login :: #login-box-wrapper";
     }
+    @PostMapping("/register")
+    public Object validateRegister(UserDTO user, Model model){
+        prepareLoginPage(model);
+        if(userLoginService.isThereAUserByUsername(user.getUsername())){
+            throwAlertBox(model, "User with given username already exists");
+            return "login :: #login-box-wrapper";
+        }
+        model.addAttribute("registerSuccess", true);
+        return "login :: #login-box-wrapper";
+    }
+
 }

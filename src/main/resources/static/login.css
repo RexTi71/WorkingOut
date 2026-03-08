@@ -5,14 +5,19 @@
     font-style: normal;
     font-size: 1.25rem;
 }
-.login-fail-alert{
-    background-color: #b03e3e;
+.alert-box{
     color: white;
     display: grid;
     justify-content: center;
     padding: 25px;
     margin-bottom: 10px;
     border-radius: 15pt;
+}
+.login-fail-alert{
+    background-color: #b03e3e;
+}
+.register-success-alert{
+    background-color: #0f4f21;
 }
 .login-box-wrapper{
     height: 100vh;
@@ -23,7 +28,6 @@
     text-align: center;
     background-color: #14c947;
     border-radius: 15pt;
-    width: min-content;
     height: min-content;
     padding: 15px;
 }

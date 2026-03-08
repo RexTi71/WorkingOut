@@ -20,4 +20,7 @@ public class UserLoginService {
         User user = userDTOMapper.toEntity(userDTO);
         return usersRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword())  != null;
     }
+    public boolean isThereAUserByUsername(String username){
+        return usersRepository.findByUsername(username) != null;
+    }
 }
