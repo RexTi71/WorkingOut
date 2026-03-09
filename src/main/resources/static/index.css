@@ -27,6 +27,11 @@ th, td {
     border-width: 0 1px 1px 0;
 
 }
+input{
+    border-radius: 15px;
+    border-style: solid;
+    padding-left: 10px;
+}
 .table-wrapper{
     padding-left: 1rem;
 }

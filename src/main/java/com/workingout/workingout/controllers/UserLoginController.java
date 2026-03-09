@@ -1,10 +1,14 @@
 package com.workingout.workingout.controllers;
 
 import com.workingout.workingout.dto.UserDTO;
+import com.workingout.workingout.exceptions.InputNotValidException;
 import com.workingout.workingout.service.UserLoginService;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -29,8 +33,9 @@ public class UserLoginController {
         model.addAttribute("errorMsg", message);
     }
     @PostMapping("/login")
-    public Object validateLogin(UserDTO user, Model model){
+    public Object validateLogin(UserDTO user, HttpSession session, Model model){
         if(userLoginService.isThereAUserByThisUsernameAndPassword(user)){
+            //session.setAttribute("loggedUser", user);
             return ResponseEntity.ok()
                     .header("HX-Redirect","/")
                     .build();
@@ -40,7 +45,10 @@ public class UserLoginController {
         return "login :: #login-box-wrapper";
     }
     @PostMapping("/register")
-    public Object validateRegister(UserDTO user, Model model){
+    public Object validateRegister(@Valid UserDTO user, BindingResult bindingResult, Model model){
+        if(bindingResult.hasErrors()){
+            throw new InputNotValidException();
+        }
         prepareLoginPage(model);
         if(userLoginService.isThereAUserByUsername(user.getUsername())){
             throwAlertBox(model, "User with given username already exists");
