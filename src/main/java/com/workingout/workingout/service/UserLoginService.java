@@ -4,31 +4,43 @@ import com.workingout.workingout.dto.DTOMapper;
 import com.workingout.workingout.dto.UserDTO;
 import com.workingout.workingout.models.User;
 import com.workingout.workingout.repository.UsersRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserLoginService {
+public class UserLoginService implements UserDetailsService {
     private final UsersRepository usersRepository;
     private final DTOMapper userDTOMapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserLoginService(UsersRepository usersRepository, DTOMapper userDTOMapper){
+    public UserLoginService(UsersRepository usersRepository, DTOMapper userDTOMapper, PasswordEncoder passwordEncoder){
         this.usersRepository = usersRepository;
         this.userDTOMapper = userDTOMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    public boolean isThereAUserByThisUsernameAndPassword(UserDTO userDTO){
-        User user = userDTOMapper.toEntity(userDTO);
-        return usersRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword())  != null;
-    }
-    public boolean isThereAUserByUsername(String username){
+    private boolean isThereAUserByUsername(String username){
         return usersRepository.findByUsername(username) != null;
     }
     public void addUserToDb(UserDTO userDTO) throws IllegalArgumentException{
         User user = userDTOMapper.toEntity(userDTO);
-        if(user.getPassword().isBlank()){
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        if(user.getPassword().isBlank() || isThereAUserByUsername(user.getUsername())){
             throw new IllegalArgumentException();
         }
         usersRepository.save(user);
+    }
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
+        User user = usersRepository.findByUsername(username);
 
+        if(user==null){
+            throw new UsernameNotFoundException("Username not found");
+        }
+
+        return user;
     }
 }
