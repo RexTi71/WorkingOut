@@ -20,9 +20,9 @@
             </div>
             <div class="login-box">
                 <form hx-post="/login" hx-target="#login-box-wrapper" hx-swap="outerHTML" th:object="${user}">
-                    <input type="text" id="username" placeholder="Username" th:field="*{username}">
+                    <input type="text" id="username" name="username" placeholder="Username" th:field="*{username}">
                     <br>
-                    <input type="password" id="password" placeholder="Password" th:field="*{password}" >
+                    <input type="password" id="password" name="password" placeholder="Password" th:field="*{password}" >
                     <br>
                     <input type="submit" value="Login">
                     <input type="button" hx-post="/register" hx-target="#login-box-wrapper" hx-swap="outerHTML" value="Register">

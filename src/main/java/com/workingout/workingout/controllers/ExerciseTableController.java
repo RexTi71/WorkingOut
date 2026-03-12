@@ -41,7 +41,7 @@ public class ExerciseTableController {
         prepareExercise(day, model);
         return "exercisetable :: exerciseTable";
     }
-    @PostMapping("/exercises/add")
+    @PostMapping("/exercises")
     public String addExercise(@Valid ExerciseDTO newExercise, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
             throw new InputNotValidException();
@@ -51,13 +51,13 @@ public class ExerciseTableController {
         prepareExercise(newExercise.getDay(), model);
         return "exercisetable :: exerciseTable";
     }
-    @DeleteMapping("/exercises/removeall")
+    @DeleteMapping("/exercises")
     public String deleteAllExercisesFromDay(@RequestParam DayOfWeek day, Model model){
         prepareExercise(day, model);
         tableService.deleteAllExercisesFromDay(day);
         return "exercisetable :: exerciseTable";
     }
-    @DeleteMapping("/exercises/remove/{id}")
+    @DeleteMapping("/exercises/{id}")
     public String deleteExerciseById(@PathVariable Long id, Model model){
         tableService.deleteExerciseById(id);
         prepareExercise((DayOfWeek) model.getAttribute("day"), model);
