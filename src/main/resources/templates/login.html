@@ -13,7 +13,7 @@
     <div id="login-box-wrapper"class="login-box-wrapper">
         <div>
             <div th:if="${loginFail}" class="login-fail-alert alert-box">
-                <strong th:text="${errorMsg}"></strong>
+                <strong th:utext="${errorMsg}"></strong>
             </div>
             <div th:if="${registerSuccess}" class="register-success-alert alert-box">
                 <strong>Successfully registered, you can now log in</strong>

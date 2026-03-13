@@ -2,6 +2,7 @@ package com.workingout.workingout.controllers;
 
 import com.workingout.workingout.dto.UserDTO;
 import com.workingout.workingout.exceptions.InputNotValidException;
+import com.workingout.workingout.exceptions.RegistrationException;
 import com.workingout.workingout.models.User;
 import com.workingout.workingout.service.UserLoginService;
 import jakarta.servlet.http.HttpSession;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class UserLoginController {
@@ -22,20 +24,32 @@ public class UserLoginController {
         this.userLoginService = userLoginService;
     }
 
+    private void throwAlertBox(RedirectAttributes attributes, String message){
+        attributes.addFlashAttribute("loginFail", true);
+        attributes.addFlashAttribute("errorMsg", message);
+    }
     @PostMapping("/login-error")
     public String loginError(Model model) {
-        model.addAttribute("user", new UserDTO());
+        prepareLoginPage(model);
         model.addAttribute("loginFail", true);
-        model.addAttribute("errorMsg", "Nieprawidłowy login lub hasło");
+        model.addAttribute("errorMsg", "Invalid login or password");
 
         return "login :: #login-box-wrapper";
     }
     @PostMapping("/register")
-    public Object validateRegister(@Valid UserDTO userDto, BindingResult bindingResult, Model model) {
-        userLoginService.addUserToDb(userDto);
-
-        model.addAttribute("registerSuccess", true);
-        return "login :: #login-box-wrapper";
+    public String validateRegister(@Valid UserDTO userDto, BindingResult bindingResult, RedirectAttributes attributes) {
+        try{
+            if(bindingResult.hasErrors()){
+                throwAlertBox(attributes, "Username must be between 3 and 24,<br>and password between 6 and 24");
+                return "redirect:/login";
+            }
+            userLoginService.addUserToDb(userDto);
+            attributes.addFlashAttribute("registerSuccess", true);
+            return "redirect:/login";
+        }catch (RegistrationException ex){
+            throwAlertBox(attributes, "Failed to register user");
+            return "redirect:/login";
+        }
     }
     private void prepareLoginPage(Model model){
         model.addAttribute("user", new UserDTO());
@@ -45,40 +59,6 @@ public class UserLoginController {
         prepareLoginPage(model);
         return "login";
     }
-//    private void throwAlertBox(Model model, String message){
-//        model.addAttribute("loginFail", true);
-//        model.addAttribute("errorMsg", message);
-//    }
-//    @PostMapping("/login")
-//    public Object validateLogin(UserDTO user, HttpSession session, Model model){
-//        if(userLoginService.isThereAUserByThisUsernameAndPassword(user)){
-//            //session.setAttribute("loggedUser", user);
-//            return ResponseEntity.ok()
-//                    .header("HX-Redirect","/")
-//                    .build();
-//        }
-//        prepareLoginPage(model);
-//        throwAlertBox(model, "Failed to login");
-//        return "login :: #login-box-wrapper";
-//    }
-//    @PostMapping("/register")
-//    public Object validateRegister(@Valid UserDTO user, BindingResult bindingResult, Model model){
-//        if(bindingResult.hasErrors()){
-//            throw new InputNotValidException();
-//        }
-//        prepareLoginPage(model);
-//        if(userLoginService.isThereAUserByUsername(user.getUsername())){
-//            throwAlertBox(model, "User with given username already exists");
-//            return "login :: #login-box-wrapper";
-//        }
-//        try{
-//            userLoginService.addUserToDb(user);
-//        }catch (IllegalArgumentException ex){
-//            throwAlertBox(model,"Given username or password was empty");
-//            return "login :: #login-box-wrapper";
-//        }
-//        model.addAttribute("registerSuccess", true);
-//        return "login :: #login-box-wrapper";
-//    }
+
 
 }

@@ -2,6 +2,7 @@ package com.workingout.workingout.service;
 
 import com.workingout.workingout.dto.DTOMapper;
 import com.workingout.workingout.dto.UserDTO;
+import com.workingout.workingout.exceptions.RegistrationException;
 import com.workingout.workingout.models.User;
 import com.workingout.workingout.repository.UsersRepository;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,14 +23,17 @@ public class UserLoginService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    private boolean isRegistrationDataNotValid(User user){
+        return user.getPassword().isBlank() || isThereAUserByUsername(user.getUsername());
+    }
     private boolean isThereAUserByUsername(String username){
         return usersRepository.findByUsername(username) != null;
     }
-    public void addUserToDb(UserDTO userDTO) throws IllegalArgumentException{
+    public void addUserToDb(UserDTO userDTO) throws RegistrationException{
         User user = userDTOMapper.toEntity(userDTO);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        if(user.getPassword().isBlank() || isThereAUserByUsername(user.getUsername())){
-            throw new IllegalArgumentException();
+        if(isRegistrationDataNotValid(user)){
+            throw new RegistrationException();
         }
         usersRepository.save(user);
     }

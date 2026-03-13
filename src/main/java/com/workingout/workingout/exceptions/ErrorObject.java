@@ -7,6 +7,11 @@ public class ErrorObject {
     private String message;
     private Date timestamp;
 
+    public ErrorObject(Integer statusCode, String message){
+        this.statusCode = statusCode;
+        this.message = message;
+        this.timestamp = new Date();
+    }
     public Integer getStatusCode(){
         return this.statusCode;
     }

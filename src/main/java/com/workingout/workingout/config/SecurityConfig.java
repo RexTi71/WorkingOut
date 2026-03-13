@@ -18,7 +18,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
 
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/register", "/login-error", "/*css", "/*js").permitAll()
+                        .requestMatchers("/login", "/register", "/login-error", "/error","/*css", "/*js").permitAll()
                         .anyRequest().authenticated()
                 )
 
@@ -29,11 +29,10 @@ public class SecurityConfig {
                             response.setHeader("HX-Redirect", "/");
                         })
                         .failureHandler((request, response, exception) -> {
-                            // Błąd: Robimy forward do Twojego kontrolera, który zwróci fragment HTML
                             request.getRequestDispatcher("/login-error").forward(request, response);
                         })
                 )
-
+                //Nie ma jeszcze logout strony
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout")
@@ -46,8 +45,4 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-//    @Bean
-//    public UserDetailsService userDetailsService(){
-//
-//    }
 }
