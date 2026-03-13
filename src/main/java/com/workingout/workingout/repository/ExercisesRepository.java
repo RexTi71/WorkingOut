@@ -11,7 +11,7 @@ import com.workingout.workingout.models.Exercise;
 
 @Repository
 public interface ExercisesRepository extends JpaRepository<Exercise, Long>{
-    List<Exercise> findByDay(DayOfWeek day);
+    List<Exercise> findByDayAndUserId(DayOfWeek day, Long userId);
     @Transactional
-    void deleteAllByDay(DayOfWeek day);
+    void deleteAllByDayAndUserId(DayOfWeek day, Long userId);
 }

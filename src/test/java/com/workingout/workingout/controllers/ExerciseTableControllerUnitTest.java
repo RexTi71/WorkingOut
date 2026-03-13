@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
-
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.argThat;
@@ -38,7 +37,7 @@ public class ExerciseTableControllerUnitTest {
         DayOfWeek testDay = DayOfWeek.WEDNESDAY;
         List<Exercise> mockExercises = List.of(new Exercise());
 
-        when(tableService.getExercisesFromDay(testDay)).thenReturn(mockExercises);
+        when(tableService.getExercisesFromDayWithUserId(testDay)).thenReturn(mockExercises);
 
         mockMvc.perform(get("/exercises")
                         .param("day", "WEDNESDAY"))
@@ -49,7 +48,7 @@ public class ExerciseTableControllerUnitTest {
                 .andExpect(model().attribute("exercises", mockExercises))
                 .andExpect(model().attributeExists("newExercise"));
 
-        verify(tableService).getExercisesFromDay(testDay);
+        verify(tableService).getExercisesFromDayWithUserId(testDay);
     }
     @Test
     void shouldReturnAllExercisesForDayNull() throws Exception{

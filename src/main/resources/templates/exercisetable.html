@@ -6,7 +6,7 @@
     </head>
     <body>
         <div th:fragment="exerciseTable">
-            <form hx-post="/exercises/add" th:object="${newExercise}">
+            <form hx-post="/exercises" th:object="${newExercise}">
                 <table>
                     <thead>
                         <tr>
@@ -25,7 +25,7 @@
                             <td th:text="${ex.getSets()}"></td>
                             <td th:text="${ex.getReps()}"></td>
                             <td th:text="${ex.getExtraInfo()}"></td>
-                            <td th:hx-delete="|/exercises/remove/${ex.getId()}|" hx-swap="none" class="delete-btn">x</td>
+                            <td th:hx-delete="|/exercises/${ex.getId()}|" hx-swap="none" class="delete-btn">x</td>
                         </tr>
                         <tr>
                             <td><input type="text" th:field="*{name}"></td>
@@ -38,7 +38,7 @@
                 </table>
                 <ul>
                     <button class="btn-base day-btn montserrat-default" type="submit">Add exercise</button>
-                    <button class="btn-base delete-all-btn montserrat-default" hx-delete="/exercises/removeall" hx-swap="none" type="button">Delete all exercises</button>
+                    <button class="btn-base delete-all-btn montserrat-default" hx-delete="/exercises" hx-swap="none" type="button">Delete all exercises</button>
                 </ul>
             </form>
         </div>
