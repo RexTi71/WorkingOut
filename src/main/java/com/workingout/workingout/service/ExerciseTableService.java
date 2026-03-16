@@ -6,8 +6,6 @@ import java.util.List;
 import com.workingout.workingout.dto.ExerciseDTO;
 import com.workingout.workingout.dto.DTOMapper;
 import com.workingout.workingout.models.User;
-import com.workingout.workingout.repository.UsersRepository;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.workingout.workingout.models.DayOfWeek;

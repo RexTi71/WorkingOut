@@ -4,7 +4,6 @@ import com.workingout.workingout.dto.ExerciseDTO;
 import com.workingout.workingout.exceptions.InputNotValidException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,8 +19,7 @@ import java.security.Principal;
 public class ExerciseTableController {
     private final ExerciseTableService tableService;
 
-    public ExerciseTableController(ExerciseTableService tableService,
-                                   UsersRepository usersRepository){
+    public ExerciseTableController(ExerciseTableService tableService){
         this.tableService = tableService;
     }
     @GetMapping("/")
@@ -50,8 +48,6 @@ public class ExerciseTableController {
                               BindingResult bindingResult,
                               HttpServletRequest request,
                               Model model){
-        //TODO:Usunac niepotrzebne zamiast tego
-        //Dodac wyswietlanie komunikatu o bledzie
         if(bindingResult.hasErrors()){
             throw new InputNotValidException();
         }
