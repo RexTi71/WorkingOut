@@ -27,14 +27,14 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler(InputNotValidException.class)
     public ResponseEntity<ErrorObject> handleInputNotValidException(InputNotValidException ex){
-        ErrorObject errorObject = new ErrorObject(HttpStatus.NOT_ACCEPTABLE.value(), ex.getMessage());
+        ErrorObject errorObject = new ErrorObject(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
         addToLog(ex.toString());
-        return new ResponseEntity<>(errorObject, HttpStatus.NOT_ACCEPTABLE);
+        return new ResponseEntity<>(errorObject, HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(RegistrationException.class)
     public ResponseEntity<ErrorObject> handleRegistrationException(RegistrationException ex){
-        ErrorObject errorObject = new ErrorObject(HttpStatus.NOT_ACCEPTABLE.value(), ex.getMessage());
+        ErrorObject errorObject = new ErrorObject(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
         addToLog(ex.toString());
-        return new ResponseEntity<>(errorObject, HttpStatus.NOT_ACCEPTABLE);
+        return new ResponseEntity<>(errorObject, HttpStatus.BAD_REQUEST);
     }
 }
