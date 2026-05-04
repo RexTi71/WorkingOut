@@ -27,4 +27,4 @@ A specialized web application designed for fitness enthusiasts to manage their d
 DB_USERNAME=YOUR_DB_USERNAME
 DB_PASSWORD=YOUR_DB_PASSWORD
 ```
-
+The application will be available at: http://localhost:8080
